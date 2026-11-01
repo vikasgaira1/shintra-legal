@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Instagram Connected · VG World Studio</title>
+<style>
+  :root { --bg:#FFF6E0; --card:#ffffff; --text:#3b2a1c; --muted:#6B4226; --accent:#FB8500; --line:#ecdcb8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#1d1712; --card:#28201a; --text:#f3e9d8; --muted:#d9c3a3; --accent:#FFB703; --line:#4a3b2c; } }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 560px; margin: 0 auto; padding: 48px 16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:24px; }
+  h1 { font-size: 1.4rem; margin: 0 0 8px; }
+  p { color: var(--muted); }
+  .links { font-size: .9rem; margin-bottom: 0; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+<div class="card">
+<h1 id="h">Instagram login finished</h1>
+<p id="m">This page only confirms that Instagram sent you back to VG World Studio. It does not store or send anything.</p>
+<p class="links"><a href="privacy.html">Privacy Policy</a> · <a href="data-deletion.html">Data deletion</a></p>
+</div>
+</main>
+<script>
+  // Static redirect target for Instagram Login. It reads the query string only to show a status line;
+  // the authorization code stays in the address bar for the app owner to exchange locally. Nothing is sent anywhere.
+  var q = new URLSearchParams(location.search);
+  if (q.get('code')) {
+    document.getElementById('h').textContent = 'Instagram account connected';
+    document.getElementById('m').textContent = 'Authorization received. You can close this tab and return to the VG World Studio dashboard.';
+  } else if (q.get('error')) {
+    document.getElementById('h').textContent = 'Instagram login was cancelled';
+    document.getElementById('m').textContent = 'No permissions were granted. You can close this tab.';
+  }
+</script>
+</body>
+</html>
