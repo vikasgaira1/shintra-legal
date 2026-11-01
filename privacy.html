@@ -38,24 +38,33 @@ Instagram API (Instagram API with Instagram Login).</p>
   <tr><th>Data</th><th>Why we use it</th></tr>
   <tr><td><b>Our own account's basic profile</b> (username, account ID, follower and post counts) and our own posts (IDs, captions, links)</td><td>To publish our Reels and to know which post a comment belongs to.</td></tr>
   <tr><td><b>Comments on our own posts</b> (comment text, commenter's username, time, comment ID)</td><td>To read comments, reply to them, and hide spam or unsafe comments.</td></tr>
-  <tr><td><b>Direct messages people send to our account</b> (message text, sender's Instagram-scoped ID and username, time)</td><td>To answer people who wrote to us first. We never send unsolicited messages.</td></tr>
+  <tr><td><b>Direct messages people send to our account</b> (message text, sender's Instagram-scoped ID and username, time)</td><td>To answer people who wrote to us first, including a one-time automatic thank-you message. We never send unsolicited messages.</td></tr>
   <tr><td><b>Insights for our own account and posts</b> (views, reach, likes, comments, saves, shares, watch time, follower counts; aggregated numbers only)</td><td>To see which stories families enjoy and plan better ones.</td></tr>
 </table>
 <p>We do not access anyone's contacts, location, photos, email address, phone number, or other accounts. We do not
 use Facebook Login and we do not access Facebook data.</p>
 
-<h2>2. How replies are made: a human approves every reply</h2>
-<p>For each new comment or message, an AI assistant (Claude, by Anthropic) may draft a suggested reply. To write the
-draft, the comment or message text and the sender's username are sent to Anthropic. <b>A person reviews every reply
-and approves it before anything is sent.</b> The app never sends replies through the API on its own. (Fixed welcome
-messages and FAQ answers set up in Instagram's own built-in inbox tools are separate from this app.)</p>
+<h2>2. How replies are made: automatic only under fixed safety rules</h2>
+<p>When new comments or messages arrive, an AI assistant (Claude, by Anthropic) may draft suggested replies to
+comments. To do this, the comment or message text and the sender's username are sent to Anthropic.</p>
+<p><b>Simple, polite replies to comments and a one-time thank-you message for new direct messages may be sent
+automatically under fixed safety rules; anything sensitive is held for a person.</b> A reply is only sent
+automatically when the comment is clearly friendly (for example praise, thanks or a question about our stories), the
+reply is short, contains no links and never asks for personal details, and nobody on our side has already answered.
+Comments or messages with personal details, complaints, health or safety concerns, religion or politics, business
+requests, or anything unclear are never answered automatically; a person reads and handles them. Obvious spam may be
+hidden automatically, which can be undone. The thank-you message for direct messages is sent once per conversation and
+nothing more is sent automatically after it. A person can switch automatic replies off at any time, and every
+automatic reply is logged so it can be checked and removed. (FAQ answers set up in Instagram's own built-in inbox
+tools are separate from this app.)</p>
 
 <h2>3. Where data is stored and for how long</h2>
 <ul>
   <li><b>Storage:</b> on one private computer we control, in local files: a log of comments and messages we have
-  handled, a file of draft replies, and a cache of the latest inbox check that is overwritten on every check. This
+  handled, a file of draft replies, a log of automatic replies, and a cache of the latest inbox check that is overwritten on every check. This
   data is not uploaded to any cloud storage.</li>
-  <li><b>Retention:</b> handled comments and messages, and drafts, are deleted automatically after <b>90 days</b>
+  <li><b>Retention:</b> handled comments and messages, drafts, and the log of automatic replies are deleted
+  automatically after <b>90 days</b>
   (sooner if you ask, see section 6). Aggregated insights numbers for our own posts may be kept longer, because they
   contain no personal information.</li>
   <li><b>Security:</b> the computer is password-protected. Our Instagram access token is kept in a private file on
